@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
+﻿
 namespace FootBall.API.Controllers
 {
     using FootBall.API.Context;
     using FootBall.API.Entity;
     using FootBall.API.Models;
-     
+
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
     [Route("api/[controller]")]
@@ -28,7 +28,7 @@ namespace FootBall.API.Controllers
         [HttpGet("[action]/{Id}")]
         public async Task<ActionResult<CreateUserModel>> GetById(int id)
         {
-            User user = await this.db.User.FirstOrDefaultAsync(x => x.Id == id); 
+            var user = await this.db.User.FirstOrDefaultAsync(x => x.Id == id); 
 
             if (user == null)
                 return NotFound();
@@ -67,7 +67,7 @@ namespace FootBall.API.Controllers
         [HttpDelete("[action]/{Id}")]
         public async Task<ActionResult<CreateUserModel>> Delete(int id)
         {
-            User user = await this.db.User.FirstOrDefaultAsync(x => x.Id == id);
+            var user = await this.db.User.FirstOrDefaultAsync(x => x.Id == id);
              
             if (id < 0)
                 return NotFound();
